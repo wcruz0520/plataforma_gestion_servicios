@@ -32,6 +32,12 @@ public class AppDbContext : DbContext
                   .HasMaxLength(255)
                   .IsRequired();
 
+            entity.Property(x => x.ExternalApiUsername)
+                  .HasMaxLength(100);
+
+            entity.Property(x => x.ExternalApiPassword)
+                  .HasMaxLength(255);
+
             entity.Property(x => x.Email)
                   .HasMaxLength(150)
                   .IsRequired();

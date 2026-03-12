@@ -1,4 +1,5 @@
 ﻿using PortalUsuarios.Api.DTOs;
+using PortalUsuarios.Api.Models;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
@@ -18,9 +19,9 @@ public class ExternalApiUserService
         _config = config;
     }
 
-    public async Task<HttpResponseMessage> CreateUserAsync(CreateExternalUserDto dto)
+    public async Task<HttpResponseMessage> CreateUserAsync(CreateExternalUserDto dto, PortalUser? portalUser)
     {
-        var token = await _authService.GetTokenAsync();
+        var token = await _authService.GetTokenAsync(portalUser);
 
         var client = _httpFactory.CreateClient();
 

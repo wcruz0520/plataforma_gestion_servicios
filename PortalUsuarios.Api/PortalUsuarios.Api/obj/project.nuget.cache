@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yrX2oLEUyQk=",
+  "dgSpecHash": "TmGENcU4co0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\WILLIAMC\\source\\repos\\PortalUsuarios.Api\\PortalUsuarios.Api\\PortalUsuarios.Api.csproj",
+  "projectFilePath": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\PortalUsuarios.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\WILLIAMC\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\WILLIAMC\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
