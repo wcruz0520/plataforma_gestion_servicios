@@ -91,33 +91,37 @@ export default function Sidebar() {
           </List>
         </Collapse>
         
-        <ListItemButton onClick={handleGestionClick} sx={{ color: "#fff" }}>
-          <ListItemText primary="Gestion" />
-          {openGestion ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
+        {isAdmin && (
+          <>
+            <ListItemButton onClick={handleGestionClick} sx={{ color: "#fff" }}>
+              <ListItemText primary="Gestion" />
+              {openGestion ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
 
-        {/* SUBMENUS */}
-        <Collapse in={openGestion} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
+            {/* SUBMENUS */}
+            <Collapse in={openGestion} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
 
-            {subItemsGestion.map((item) => (
-              <ListItemButton
-                key={item.path}
-                component={Link}
-                to={item.path}
-                selected={location.pathname === item.path}
-                sx={{
-                  pl: 4,
-                  color: "#d1d5db",
-                  "&.Mui-selected": { bgcolor: "#1f2937", color: "#fff" }
-                }}
-              >
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            ))}
+                {subItemsGestion.map((item) => (
+                  <ListItemButton
+                    key={item.path}
+                    component={Link}
+                    to={item.path}
+                    selected={location.pathname === item.path}
+                    sx={{
+                      pl: 4,
+                      color: "#d1d5db",
+                      "&.Mui-selected": { bgcolor: "#1f2937", color: "#fff" }
+                    }}
+                  >
+                    <ListItemText primary={item.text} />
+                  </ListItemButton>
+                ))}
 
-          </List>
-        </Collapse>
+              </List>
+            </Collapse>
+          </>
+        )}
 
         {/* Cuenta */}
         <ListItemButton
