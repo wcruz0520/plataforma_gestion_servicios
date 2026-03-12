@@ -122,4 +122,41 @@ public class PortalAuthService
         return (true, null);
     }
 
+    public async Task<List<PortalUser>> GetClientUsersAsync()
+    {
+        return await _dbContext.PortalUsers
+            .Where(x => x.RoleName == "Cliente")
+            .OrderByDescending(x => x.CreatedAt)
+            .ToListAsync();
+    }
+
+    public async Task<(bool Success, string? Error)> DeleteUserAsync(int id)
+    {
+        var user = await _dbContext.PortalUsers.FirstOrDefaultAsync(x => x.Id == id);
+        if (user == null)
+            return (false, "Usuario no encontrado.");
+
+        _dbContext.PortalUsers.Remove(user);
+        await _dbContext.SaveChangesAsync();
+
+        return (true, null);
+    }
+
+    public async Task<int> DeleteUsersAsync(List<int> userIds)
+    {
+        if (userIds.Count == 0)
+            return 0;
+
+        var users = await _dbContext.PortalUsers
+            .Where(x => userIds.Contains(x.Id))
+            .ToListAsync();
+
+        if (users.Count == 0)
+            return 0;
+
+        _dbContext.PortalUsers.RemoveRange(users);
+        await _dbContext.SaveChangesAsync();
+
+        return users.Count;
+    }
 }

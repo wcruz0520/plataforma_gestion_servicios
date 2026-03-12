@@ -17,6 +17,13 @@ namespace PortalUsuarios.Api.Controllers
             _portalAuthService = portalAuthService;
         }
 
+        [HttpGet("clients")]
+        public async Task<IActionResult> GetClients()
+        {
+            var users = await _portalAuthService.GetClientUsersAsync();
+            return Ok(users.Select(ToResponse));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] UpsertPortalUserDto dto)
         {
@@ -40,6 +47,28 @@ namespace PortalUsuarios.Api.Controllers
             }
 
             return Ok(ToResponse(result.User!));
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _portalAuthService.DeleteUserAsync(id);
+            if (!result.Success)
+            {
+                if (result.Error == "Usuario no encontrado.")
+                    return NotFound(new { message = result.Error });
+
+                return BadRequest(new { message = result.Error });
+            }
+
+            return Ok(new { message = "Usuario eliminado correctamente." });
+        }
+
+        [HttpPost("delete-bulk")]
+        public async Task<IActionResult> DeleteBulk([FromBody] BulkDeletePortalUsersDto dto)
+        {
+            var deletedCount = await _portalAuthService.DeleteUsersAsync(dto.UserIds.Distinct().ToList());
+            return Ok(new { deletedCount });
         }
 
         private static PortalUserResponseDto ToResponse(PortalUser user)

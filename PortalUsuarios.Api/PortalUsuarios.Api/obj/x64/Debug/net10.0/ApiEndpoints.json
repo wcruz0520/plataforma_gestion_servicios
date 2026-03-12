@@ -109,5 +109,47 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PortalUsuarios.Api.Controllers.PortalUsersController",
+    "Method": "Delete",
+    "RelativePath": "api/portal-users/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PortalUsuarios.Api.Controllers.PortalUsersController",
+    "Method": "GetClients",
+    "RelativePath": "api/portal-users/clients",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PortalUsuarios.Api.Controllers.PortalUsersController",
+    "Method": "DeleteBulk",
+    "RelativePath": "api/portal-users/delete-bulk",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "PortalUsuarios.Api.DTOs.BulkDeletePortalUsersDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
