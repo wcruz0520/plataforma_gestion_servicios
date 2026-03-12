@@ -76,7 +76,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("FrontPolicy", policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173")
+            .SetIsOriginAllowed(_ => true)
+            //.WithOrigins("http://localhost:5173")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -92,5 +93,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-Console.WriteLine(BCrypt.Net.BCrypt.HashPassword("Admin123*"));
+//Console.WriteLine(BCrypt.Net.BCrypt.HashPassword("Admin123*"));
 app.Run();

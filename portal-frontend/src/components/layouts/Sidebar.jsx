@@ -67,7 +67,7 @@ export default function Sidebar() {
 
         {/* MENU PRINCIPAL */}
         <ListItemButton onClick={handleApiFeClick} sx={{ color: "#fff" }}>
-          <ListItemText primary="Api FE SOLSAP" />
+          <ListItemText primary="API Facturacion" />
           {openApiFe ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
 
