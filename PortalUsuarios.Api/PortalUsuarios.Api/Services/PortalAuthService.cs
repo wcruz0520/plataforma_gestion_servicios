@@ -122,6 +122,13 @@ public class PortalAuthService
         return (true, null);
     }
 
+    public async Task<List<PortalUser>> GetUsersAsync()
+    {
+        return await _dbContext.PortalUsers
+            .OrderByDescending(x => x.CreatedAt)
+            .ToListAsync();
+    }
+
     public async Task<List<PortalUser>> GetClientUsersAsync()
     {
         return await _dbContext.PortalUsers

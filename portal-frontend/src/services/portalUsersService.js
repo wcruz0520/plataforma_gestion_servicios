@@ -5,8 +5,8 @@ export async function createPortalUser(data) {
   return response.data;
 }
 
-export async function getPortalClientUsers() {
-  const response = await axiosClient.get("/api/portal-users/clients");
+export async function getPortalUsers() {
+  const response = await axiosClient.get("/api/portal-users");
   return response.data;
 }
 

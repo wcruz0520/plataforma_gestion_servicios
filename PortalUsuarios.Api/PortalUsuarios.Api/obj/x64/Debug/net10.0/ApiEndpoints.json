@@ -75,6 +75,16 @@
   },
   {
     "ContainingType": "PortalUsuarios.Api.Controllers.PortalUsersController",
+    "Method": "GetAll",
+    "RelativePath": "api/portal-users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PortalUsuarios.Api.Controllers.PortalUsersController",
     "Method": "Create",
     "RelativePath": "api/portal-users",
     "HttpMethod": "POST",

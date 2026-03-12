@@ -17,6 +17,14 @@ namespace PortalUsuarios.Api.Controllers
             _portalAuthService = portalAuthService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var users = await _portalAuthService.GetUsersAsync();
+            return Ok(users.Select(ToResponse));
+        }
+
+
         [HttpGet("clients")]
         public async Task<IActionResult> GetClients()
         {

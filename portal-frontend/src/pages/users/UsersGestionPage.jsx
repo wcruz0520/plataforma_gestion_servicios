@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Alert,
   Box,
@@ -28,13 +28,15 @@ import {
   createPortalUser,
   deletePortalUser,
   deletePortalUsersBulk,
-  getPortalClientUsers,
+  getPortalUsers,
   updatePortalUser,
 } from "../../services/portalUsersService";
+import { useAuth } from "../../auth/AuthContext";
 
 const roleOptions = ["Admin", "Cliente", "Desarrollador"];
 
 export default function UsersGestionPage() {
+  const { user: currentUser } = useAuth();
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState([]);
@@ -55,20 +57,26 @@ export default function UsersGestionPage() {
     isActive: true,
   });
 
-  const loadUsers = async () => {
+  const loadUsers = useCallback(async () => {
     setLoading(true);
     setErrorMessage("");
 
     try {
-      const data = await getPortalClientUsers();
-      setUsers(Array.isArray(data) ? data : []);
+      const data = await getPortalUsers();
+      const usersList = Array.isArray(data) ? data : [];
+      const visibleUsers = usersList.filter((user) => user.username !== currentUser?.username);
+      setUsers(visibleUsers);
     } catch (error) {
       console.error(error);
-      setErrorMessage("No se pudo cargar la lista de clientes del portal.");
+      setErrorMessage("No se pudo cargar la lista de usuarios del portal.");
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentUser?.username]);
+
+  useEffect(() => {
+    loadUsers();
+  }, [loadUsers]);
 
   useEffect(() => {
     loadUsers();
