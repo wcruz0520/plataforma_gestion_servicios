@@ -43,4 +43,13 @@ public class TokenService
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
+
+    public int? GetCurrentUserId(ClaimsPrincipal principal)
+    {
+        var idValue = principal.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (int.TryParse(idValue, out var userId))
+            return userId;
+
+        return null;
+    }
 }

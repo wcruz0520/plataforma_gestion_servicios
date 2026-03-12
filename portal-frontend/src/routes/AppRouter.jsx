@@ -4,6 +4,7 @@ import DashboardPage from "../pages/dashboard/DashboardPage";
 import UsersPage from "../pages/users/UsersPage";
 import UsersGestionPage from "../pages/users/UsersGestionPage";
 import RequestsPage from "../pages/requests/RequestsPage";
+import AccountPage from "../pages/account/AccountPage";
 import ProtectedRoute from "../auth/ProtectedRoute";
 import AppLayout from "../components/layouts/AppLayout";
 
@@ -19,6 +20,7 @@ export default function AppRouter() {
             <Route path="/users" element={<UsersPage />} />
             <Route path="/usersgestion" element={<UsersGestionPage />} />
             <Route path="/requests" element={<RequestsPage />} />
+            <Route path="/account" element={<AccountPage />} />
           </Route>
         </Route>
       </Routes>

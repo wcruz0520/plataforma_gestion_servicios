@@ -23,6 +23,7 @@ export default function Sidebar() {
 
   const subItemsGestion = [
     { text: "Usuarios", path: "/usersgestion" },
+    // { text: "Cuenta", path: "/account" },
   ];
 
   return (
@@ -111,6 +112,19 @@ export default function Sidebar() {
 
           </List>
         </Collapse>
+
+        {/* Cuenta */}
+        <ListItemButton
+          component={Link}
+          to="/account"
+          selected={location.pathname === "/account"}
+          sx={{
+            color: "#fff",
+            "&.Mui-selected": { bgcolor: "#1f2937" }
+          }}
+        >
+          <ListItemText primary="Cuenta" />
+        </ListItemButton>
       </List>
     </Box>
   );

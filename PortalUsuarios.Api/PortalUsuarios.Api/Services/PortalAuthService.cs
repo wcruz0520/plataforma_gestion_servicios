@@ -82,4 +82,44 @@ public class PortalAuthService
 
         return (true, null, user);
     }
+
+    public async Task<(bool Success, string? Error, PortalUser? User)> UpdateCurrentUserAsync(int id, UpdateCurrentUserProfileDto dto)
+    {
+        var user = await _dbContext.PortalUsers.FirstOrDefaultAsync(x => x.Id == id && x.IsActive);
+        if (user == null)
+            return (false, "Usuario no encontrado.", null);
+
+        var usernameInUse = await _dbContext.PortalUsers
+            .AnyAsync(x => x.Username == dto.Username && x.Id != id);
+
+        if (usernameInUse)
+            return (false, "El username ya está en uso.", null);
+
+        user.Username = dto.Username;
+        user.ExternalApiUsername = dto.ExternalApiUsername;
+        user.ExternalApiPassword = dto.ExternalApiPassword;
+        user.Email = dto.Email;
+        user.FullName = dto.FullName;
+
+        await _dbContext.SaveChangesAsync();
+
+        return (true, null, user);
+    }
+
+    public async Task<(bool Success, string? Error)> ChangePasswordAsync(int id, string currentPassword, string newPassword)
+    {
+        var user = await _dbContext.PortalUsers.FirstOrDefaultAsync(x => x.Id == id && x.IsActive);
+        if (user == null)
+            return (false, "Usuario no encontrado.");
+
+        var passwordOk = BCrypt.Net.BCrypt.Verify(currentPassword, user.PasswordHash);
+        if (!passwordOk)
+            return (false, "La contraseña actual es inválida.");
+
+        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
+        await _dbContext.SaveChangesAsync();
+
+        return (true, null);
+    }
+
 }
