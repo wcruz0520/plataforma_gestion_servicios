@@ -35,15 +35,18 @@ export default function Sidebar() {
   return (
     <Box
       sx={{
-        width: 240,
+        width: 270,
         bgcolor: "#111827",
+        minWidth: 270,
+        maxWidth: 270,
+        flexShrink: 0,
         color: "#fff",
         minHeight: "100vh"
       }}
     >
       <Toolbar>
         <Typography variant="h6" fontWeight="bold">
-          Servicios
+          Menu principal
         </Typography>
       </Toolbar>
 
