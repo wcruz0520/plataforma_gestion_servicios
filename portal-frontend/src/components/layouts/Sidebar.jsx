@@ -2,9 +2,12 @@ import { Box, List, ListItemButton, ListItemText, Toolbar, Typography, Collapse 
 import { ExpandLess, ExpandMore} from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../auth/AuthContext";
 
 export default function Sidebar() {
   const location = useLocation();
+  const { user } = useAuth();
+  const isAdmin = user?.role === "Admin";
   const [openApiFe, setOpenApiFe] = useState(true);
   const [openGestion, setOpenGestion] = useState(true);
 
@@ -17,14 +20,17 @@ export default function Sidebar() {
   };
 
   const subItemsApiFe = [
-    { text: "Usuarios", path: "/users" },
+    // { text: "Usuarios", path: "/users" },
     { text: "Requests", path: "/requests" }
   ];
 
-  const subItemsGestion = [
-    { text: "Usuarios", path: "/usersgestion" },
-    // { text: "Cuenta", path: "/account" },
-  ];
+  const subItemsGestion = [];
+
+  if (isAdmin) {
+    subItemsApiFe.unshift({ text: "Usuarios", path: "/users" });
+    subItemsGestion.push({ text: "Usuarios", path: "/usersgestion" });
+  }
+
 
   return (
     <Box

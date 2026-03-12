@@ -110,8 +110,7 @@
               "RelativeToolTip": "PortalUsuarios.Api\\DTOs\\ChangePasswordDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T20:18:10.859Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-12T20:18:10.859Z"
             },
             {
               "$type": "Document",
@@ -123,8 +122,7 @@
               "RelativeToolTip": "PortalUsuarios.Api\\DTOs\\UpdateCurrentUserProfileDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T20:11:13.474Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-12T20:11:13.474Z"
             },
             {
               "$type": "Document",
@@ -136,8 +134,7 @@
               "RelativeToolTip": "PortalUsuarios.Api\\DTOs\\CurrentUserProfileDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T20:10:40.186Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-12T20:10:40.186Z"
             },
             {
               "$type": "Document",
@@ -149,8 +146,7 @@
               "RelativeToolTip": "PortalUsuarios.Api\\Migrations\\20260312174231_UpdateTablePortalUsers.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T17:42:31.821Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-12T17:42:31.821Z"
             },
             {
               "$type": "Document",
@@ -210,8 +206,7 @@
               "RelativeToolTip": "PortalUsuarios.Api\\Services\\PortalAuthService.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAYwHsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T04:57:56.673Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-12T04:57:56.673Z"
             },
             {
               "$type": "Document",
@@ -284,8 +279,7 @@
               "RelativeToolTip": "PortalUsuarios.Api\\Services\\TokenService.cs",
               "ViewState": "AgIAAC4AAAAAAAAAAAA5wC0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T03:58:43.093Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-12T03:58:43.093Z"
             },
             {
               "$type": "Document",
@@ -309,8 +303,7 @@
               "RelativeToolTip": "PortalUsuarios.Api\\Program.cs",
               "ViewState": "AgIAAFMAAAAAAAAAAAAAAF4AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T03:34:09.622Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-12T03:34:09.622Z"
             },
             {
               "$type": "Document",

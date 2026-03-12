@@ -17,10 +17,12 @@ export default function AppRouter() {
         <Route element={<ProtectedRoute />}>
           <Route element={<AppLayout />}>
             <Route path="/" element={<DashboardPage />} />
-            <Route path="/users" element={<UsersPage />} />
-            <Route path="/usersgestion" element={<UsersGestionPage />} />
             <Route path="/requests" element={<RequestsPage />} />
             <Route path="/account" element={<AccountPage />} />
+            <Route element={<ProtectedRoute allowedRoles={["Admin"]} />}>
+              <Route path="/users" element={<UsersPage />} />
+              <Route path="/usersgestion" element={<UsersGestionPage />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
