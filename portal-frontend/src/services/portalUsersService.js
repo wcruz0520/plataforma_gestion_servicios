@@ -1,5 +1,10 @@
 import axiosClient from "../api/axiosClient";
 
+export async function createPortalUser(data) {
+  const response = await axiosClient.post("/api/portal-users", data);
+  return response.data;
+}
+
 export async function getPortalClientUsers() {
   const response = await axiosClient.get("/api/portal-users/clients");
   return response.data;

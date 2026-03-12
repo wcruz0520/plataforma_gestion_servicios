@@ -23,8 +23,9 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { Delete, Edit } from "@mui/icons-material";
+import { Add, Delete, Edit } from "@mui/icons-material";
 import {
+  createPortalUser,
   deletePortalUser,
   deletePortalUsersBulk,
   getPortalClientUsers,
@@ -41,7 +42,18 @@ export default function UsersGestionPage() {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
+  const [newUser, setNewUser] = useState({
+    username: "",
+    password: "",
+    externalApiUsername: "",
+    externalApiPassword: "",
+    email: "",
+    fullName: "",
+    roleName: roleOptions[0],
+    isActive: true,
+  });
 
   const loadUsers = async () => {
     setLoading(true);
@@ -121,6 +133,31 @@ export default function UsersGestionPage() {
     setEditingUser(null);
   };
 
+  const openCreateDialog = () => {
+    setNewUser({
+      username: "",
+      password: "",
+      externalApiUsername: "",
+      externalApiPassword: "",
+      email: "",
+      fullName: "",
+      roleName: roleOptions[0],
+      isActive: true,
+    });
+    setCreateDialogOpen(true);
+  };
+
+  const closeCreateDialog = () => {
+    setCreateDialogOpen(false);
+  };
+
+  const handleCreateFieldChange = (name, value) => {
+    setNewUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const handleEditFieldChange = (name, value) => {
     setEditingUser((prev) => ({
       ...prev,
@@ -154,6 +191,33 @@ export default function UsersGestionPage() {
     } catch (error) {
       console.error(error);
       setErrorMessage(error?.response?.data?.message || "No se pudo actualizar el usuario.");
+    }
+  };
+
+  const handleCreateUser = async () => {
+    if (!newUser.username.trim() || !newUser.password.trim() || !newUser.email.trim() || !newUser.fullName.trim()) {
+      setErrorMessage("Completa usuario, contraseña, correo y nombre completo para crear el usuario.");
+      return;
+    }
+
+    try {
+      await createPortalUser({
+        username: newUser.username,
+        password: newUser.password,
+        externalApiUsername: newUser.externalApiUsername,
+        externalApiPassword: newUser.externalApiPassword,
+        email: newUser.email,
+        fullName: newUser.fullName,
+        roleName: newUser.roleName,
+        isActive: newUser.isActive,
+      });
+
+      setSuccessMessage("Usuario creado correctamente.");
+      closeCreateDialog();
+      await loadUsers();
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(error?.response?.data?.message || "No se pudo crear el usuario.");
     }
   };
 
@@ -207,14 +271,19 @@ export default function UsersGestionPage() {
                 onChange={(e) => setSearch(e.target.value)}
               />
 
-              <Button
-                color="error"
-                variant="contained"
-                onClick={handleDeleteBulk}
-                disabled={selected.length === 0}
-              >
-                Eliminar seleccionados
-              </Button>
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
+                <Button variant="contained" startIcon={<Add />} onClick={openCreateDialog}>
+                  Añadir usuario
+                </Button>
+                <Button
+                  color="error"
+                  variant="contained"
+                  onClick={handleDeleteBulk}
+                  disabled={selected.length === 0}
+                >
+                  Eliminar seleccionados
+                </Button>
+              </Stack>
             </Stack>
 
             <TableContainer>
@@ -282,6 +351,71 @@ export default function UsersGestionPage() {
         </CardContent>
       </Card>
 
+      <Dialog open={createDialogOpen} onClose={closeCreateDialog} fullWidth maxWidth="sm">
+        <DialogTitle>Añadir usuario del portal</DialogTitle>
+        <DialogContent>
+          <Stack spacing={2} sx={{ mt: 1 }}>
+            <TextField
+              label="Usuario"
+              value={newUser.username}
+              onChange={(e) => handleCreateFieldChange("username", e.target.value)}
+            />
+            <TextField
+              label="Contraseña"
+              type="password"
+              value={newUser.password}
+              onChange={(e) => handleCreateFieldChange("password", e.target.value)}
+            />
+            <TextField
+              label="Usuario API externa"
+              value={newUser.externalApiUsername}
+              onChange={(e) => handleCreateFieldChange("externalApiUsername", e.target.value)}
+            />
+            <TextField
+              label="Contraseña API externa"
+              type="password"
+              value={newUser.externalApiPassword}
+              onChange={(e) => handleCreateFieldChange("externalApiPassword", e.target.value)}
+            />
+            <TextField
+              label="Correo"
+              value={newUser.email}
+              onChange={(e) => handleCreateFieldChange("email", e.target.value)}
+            />
+            <TextField
+              label="Nombre completo"
+              value={newUser.fullName}
+              onChange={(e) => handleCreateFieldChange("fullName", e.target.value)}
+            />
+            <TextField
+              select
+              label="Rol"
+              value={newUser.roleName}
+              onChange={(e) => handleCreateFieldChange("roleName", e.target.value)}
+            >
+              {roleOptions.map((role) => (
+                <MenuItem key={role} value={role}>
+                  {role}
+                </MenuItem>
+              ))}
+            </TextField>
+            <Box>
+              <Checkbox
+                checked={newUser.isActive}
+                onChange={(e) => handleCreateFieldChange("isActive", e.target.checked)}
+              />
+              Usuario activo
+            </Box>
+          </Stack>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeCreateDialog}>Cancelar</Button>
+          <Button variant="contained" onClick={handleCreateUser}>
+            Crear usuario
+          </Button>
+        </DialogActions>
+      </Dialog>
+              
       <Dialog open={editDialogOpen} onClose={closeEditDialog} fullWidth maxWidth="sm">
         <DialogTitle>Editar usuario</DialogTitle>
         <DialogContent>
