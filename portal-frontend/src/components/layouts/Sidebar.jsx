@@ -1,10 +1,12 @@
-import { Box, List, ListItemButton, ListItemText, Toolbar, Typography, Collapse } from "@mui/material";
+import { Box, Collapse, Drawer, List, ListItemButton, ListItemText, Toolbar, Typography } from "@mui/material";
 import { ExpandLess, ExpandMore} from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../auth/AuthContext";
 
-export default function Sidebar() {
+const sidebarWidth = 270;
+
+export default function Sidebar({ mobileOpen, onCloseMobile }) {
   const location = useLocation();
   const { user } = useAuth();
   const isAdmin = user?.role === "Admin";
@@ -20,6 +22,12 @@ export default function Sidebar() {
     setOpenGestion(!openGestion);
   };
 
+  const handleNavigate = () => {
+    if (mobileOpen) {
+      onCloseMobile?.();
+    }
+  };
+
   const subItemsApiFe = [
     // { text: "Usuarios", path: "/users" },
     { text: "Requests", path: "/requests" }
@@ -28,21 +36,21 @@ export default function Sidebar() {
   const subItemsGestion = [];
 
   if (canManageExternalUsers) {
-    subItemsApiFe.unshift({ text: "Usuarios", path: "/users" });
+    subItemsApiFe.unshift({ text: "Usuarios API", path: "/users" });
     }
 
   if (isAdmin) {
-    subItemsGestion.push({ text: "Usuarios", path: "/usersgestion" });
+    subItemsGestion.push({ text: "Usuarios Portal", path: "/usersgestion" });
   }
 
 
-  return (
+  const content = (
     <Box
       sx={{
-        width: 270,
+        width: sidebarWidth,
         bgcolor: "#111827",
-        minWidth: 270,
-        maxWidth: 270,
+        minWidth: sidebarWidth,
+        maxWidth: sidebarWidth,
         flexShrink: 0,
         color: "#fff",
         minHeight: "100vh"
@@ -60,6 +68,7 @@ export default function Sidebar() {
         <ListItemButton
           component={Link}
           to="/"
+          onClick={handleNavigate}
           selected={location.pathname === "/"}
           sx={{
             color: "#fff",
@@ -84,6 +93,7 @@ export default function Sidebar() {
                 key={item.path}
                 component={Link}
                 to={item.path}
+                onClick={handleNavigate}
                 selected={location.pathname === item.path}
                 sx={{
                   pl: 4,
@@ -114,6 +124,7 @@ export default function Sidebar() {
                     key={item.path}
                     component={Link}
                     to={item.path}
+                    onClick={handleNavigate}
                     selected={location.pathname === item.path}
                     sx={{
                       pl: 4,
@@ -134,6 +145,7 @@ export default function Sidebar() {
         <ListItemButton
           component={Link}
           to="/account"
+          onClick={handleNavigate}
           selected={location.pathname === "/account"}
           sx={{
             color: "#fff",
@@ -144,5 +156,33 @@ export default function Sidebar() {
         </ListItemButton>
       </List>
     </Box>
+  );
+
+  return (
+    <>
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={onCloseMobile}
+        ModalProps={{ keepMounted: true }}
+        sx={{
+          display: { xs: "block", md: "none" },
+          "& .MuiDrawer-paper": { width: sidebarWidth, boxSizing: "border-box" },
+        }}
+      >
+        {content}
+      </Drawer>
+
+      <Drawer
+        variant="permanent"
+        open
+        sx={{
+          display: { xs: "none", md: "block" },
+          "& .MuiDrawer-paper": { width: sidebarWidth, boxSizing: "border-box", position: "relative" },
+        }}
+      >
+        {content}
+      </Drawer>
+    </>
   );
 }
