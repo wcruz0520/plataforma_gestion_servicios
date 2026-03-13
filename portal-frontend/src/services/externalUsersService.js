@@ -1,8 +1,37 @@
 import axiosClient from "../api/axiosClient";
 
+function unwrapPayload(payload) {
+  if (Array.isArray(payload)) {
+    return payload;
+  }
+
+  if (payload && typeof payload === "object" && "data" in payload) {
+    return payload.data;
+  }
+
+  return payload;
+}
+
+function normalizeExternalUser(user) {
+  if (!user || typeof user !== "object") {
+    return user;
+  }
+
+  return {
+    ...user,
+    profile: user.profile ?? user.profile__name,
+  };
+}
+
 export async function getExternalUsers() {
   const response = await axiosClient.get("/api/external-users");
-  return response.data;
+  const users = unwrapPayload(response.data);
+
+  if (!Array.isArray(users)) {
+    return [];
+  }
+
+  return users.map(normalizeExternalUser);
 }
 
 export async function createExternalUser(data) {
