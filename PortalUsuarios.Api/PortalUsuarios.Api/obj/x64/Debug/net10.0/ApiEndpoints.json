@@ -59,6 +59,16 @@
   },
   {
     "ContainingType": "PortalUsuarios.Api.Controllers.ExternalUsersController",
+    "Method": "GetUsers",
+    "RelativePath": "api/external-users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PortalUsuarios.Api.Controllers.ExternalUsersController",
     "Method": "CreateUser",
     "RelativePath": "api/external-users",
     "HttpMethod": "POST",
@@ -68,6 +78,48 @@
       {
         "Name": "dto",
         "Type": "PortalUsuarios.Api.DTOs.CreateExternalUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PortalUsuarios.Api.Controllers.ExternalUsersController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/external-users/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "PortalUsuarios.Api.DTOs.UpdateExternalUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PortalUsuarios.Api.Controllers.ExternalUsersController",
+    "Method": "UpdateBillingData",
+    "RelativePath": "api/external-users/{id}/data_factura",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "PortalUsuarios.Api.DTOs.UpdateExternalUserBillingDto",
         "IsRequired": true
       }
     ],

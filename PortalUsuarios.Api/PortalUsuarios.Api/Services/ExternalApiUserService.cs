@@ -21,15 +21,44 @@ public class ExternalApiUserService
 
     public async Task<HttpResponseMessage> CreateUserAsync(CreateExternalUserDto dto, PortalUser? portalUser)
     {
-        var token = await _authService.GetTokenAsync(portalUser);
-
-        var client = _httpFactory.CreateClient();
-
-        client.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", token);
-
-        var url = $"{_config["ExternalApi:BaseUrl"]}/user/";
+        var client = await CreateAuthenticatedClientAsync(portalUser);
+        var url = BuildUrl("/user/");
 
         return await client.PostAsJsonAsync(url, dto);
     }
+
+    public async Task<HttpResponseMessage> GetUsersAsync(PortalUser? portalUser)
+    {
+        var client = await CreateAuthenticatedClientAsync(portalUser);
+        var url = BuildUrl("/user/");
+
+        return await client.GetAsync(url);
+    }
+
+    public async Task<HttpResponseMessage> UpdateUserAsync(int id, UpdateExternalUserDto dto, PortalUser? portalUser)
+    {
+        var client = await CreateAuthenticatedClientAsync(portalUser);
+        var url = BuildUrl($"/user/{id}");
+
+        return await client.PutAsJsonAsync(url, dto);
+    }
+
+    public async Task<HttpResponseMessage> UpdateBillingDataAsync(int id, UpdateExternalUserBillingDto dto, PortalUser? portalUser)
+    {
+        var client = await CreateAuthenticatedClientAsync(portalUser);
+        var url = BuildUrl($"/user/{id}/data_factura");
+
+        return await client.PutAsJsonAsync(url, dto);
+    }
+
+    private async Task<HttpClient> CreateAuthenticatedClientAsync(PortalUser? portalUser)
+    {
+        var token = await _authService.GetTokenAsync(portalUser);
+        var client = _httpFactory.CreateClient();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        return client;
+    }
+
+    private string BuildUrl(string path) => $"{_config["ExternalApi:BaseUrl"]}{path}";
 }

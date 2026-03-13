@@ -1,5 +1,35 @@
-import { useMemo, useState } from "react";
-import { Alert, Box, Button, Card, CardContent, Divider, FormControl, FormControlLabel, FormLabel, Grid, MenuItem, Radio, RadioGroup, Stack, TextField, Typography, } from "@mui/material";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  Alert,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Checkbox,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  MenuItem,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import { Add, Edit } from "@mui/icons-material";
+import {
+  createExternalUser,
+  getExternalUsers,
+  updateExternalUser,
+  updateExternalUserBilling,
+} from "../../services/externalUsersService";
 
 const profileOptions = [
   { value: 1, label: "Administrador" },
@@ -7,460 +37,436 @@ const profileOptions = [
   { value: 4, label: "Cliente" },
 ];
 
+const createBaseUser = () => ({
+  usuario: "",
+  password: "",
+  email: "",
+  full_name: "",
+  identificacion: "",
+  profile_id: 1,
+  active: true,
+});
+
+const createBillingData = () => ({
+  ruc: "",
+  razon_social: "",
+  nombre_comercial: "",
+  direccion: "",
+  telefono: "",
+  obligado_contabilidad: "SI",
+  nombre_firma: "",
+  password_sign: "",
+  ruta_logo: "",
+});
+
 export default function UsersPage() {
-  const [form, setForm] = useState({
-    password: "",
-    usuario: "",
-    email: "",
-    full_name: "",
-    profile_id: profileOptions[0].value,
-    identificacion: "",
-
-    // Solo cliente
-    ruc: "",
-    password_sign: "",
-    razon_social: "",
-    firma: null,
-    nombre_comercial: "",
-    direccion: "",
-    telefono: "",
-    ruta_logo: null,
-    obligado_contabilidad: "SI",
-  });
-
-  const [errors, setErrors] = useState({});
+  const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-  const [generalError, setGeneralError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const isClientProfile = Number(form.profile_id) === 4;
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
 
-//   const profileOptions = useMemo(
-//     () => [
-//       { value: 1, label: "Administrador" },
-//       { value: 3, label: "Desarrollador" },
-//       { value: 4, label: "Cliente" },
-//     ],
-//     []
-//   );
+  const [newUser, setNewUser] = useState(createBaseUser());
+  const [editingUser, setEditingUser] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const [createBilling, setCreateBilling] = useState(createBillingData());
+  const [editBilling, setEditBilling] = useState(createBillingData());
 
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    setErrors((prev) => ({
-      ...prev,
-      [name]: "",
-    }));
-  };
-
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-
-    setForm((prev) => ({
-      ...prev,
-      [name]: files && files.length > 0 ? files[0] : null,
-    }));
-
-    setErrors((prev) => ({
-      ...prev,
-      [name]: "",
-    }));
-  };
-
-  const validate = () => {
-    const newErrors = {};
-
-    if (!form.password.trim()) newErrors.password = "*Requerido";//"La contraseña es obligatoria.";
-    if (!form.usuario.trim()) newErrors.usuario = "*Requerido";//"El usuario es obligatorio.";
-    if (!form.email.trim()) newErrors.email = "*Requerido";//"El correo es obligatorio.";
-    if (!form.full_name.trim()) newErrors.full_name = "*Requerido";//"El nombre completo es obligatorio.";
-    if (!form.profile_id) newErrors.profile_id = "*Requerido";//"Debe seleccionar un perfil.";
-    if (!form.identificacion.trim()) newErrors.identificacion = "*Requerido";//"La identificación es obligatoria.";
-
-    if (isClientProfile) {
-      if (!form.ruc.trim()) newErrors.ruc = "*Requerido";//"El RUC es obligatorio.";
-      if (!form.password_sign.trim()) newErrors.password_sign = "*Requerido";//"La contraseña de firma es obligatoria.";
-      if (!form.razon_social.trim()) newErrors.razon_social = "*Requerido";//"La razón social es obligatoria.";
-      if (!form.nombre_comercial.trim()) newErrors.nombre_comercial = "*Requerido";//"El nombre comercial es obligatorio.";
-      if (!form.direccion.trim()) newErrors.direccion = "*Requerido";//"La dirección es obligatoria.";
-      if (!form.telefono.trim()) newErrors.telefono = "*Requerido";//"El teléfono es obligatorio.";
-      if (!form.firma) newErrors.firma = "*Requerido";//"Debe seleccionar el archivo de firma .p12.";
-      if (!form.ruta_logo) newErrors.ruta_logo = "*Requerido";//"Debe seleccionar el logo.";
-      if (!form.obligado_contabilidad.trim()) {
-        newErrors.obligado_contabilidad = "*Requerido";//"Debe seleccionar un valor.";
-      }
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const buildPayload = () => {
-    if (isClientProfile) {
-      const formData = new FormData();
-
-      formData.append("password", form.password);
-      formData.append("usuario", form.usuario);
-      formData.append("email", form.email);
-      formData.append("full_name", form.full_name);
-      formData.append("profile_id", String(form.profile_id));
-      formData.append("identificacion", form.identificacion);
-
-      formData.append("ruc", form.ruc);
-      formData.append("password_sign", form.password_sign);
-      formData.append("razon_social", form.razon_social);
-      formData.append("firma", form.firma);
-      formData.append("nombre_comercial", form.nombre_comercial);
-      formData.append("direccion", form.direccion);
-      formData.append("telefono", form.telefono);
-      formData.append("ruta_logo", form.ruta_logo);
-      formData.append("obligado_contabilidad", form.obligado_contabilidad);
-
-      return {
-        data: formData,
-        isMultipart: true,
-      };
-    }
-
-    return {
-      data: {
-        password: form.password,
-        usuario: form.usuario,
-        email: form.email,
-        full_name: form.full_name,
-        profile_id: Number(form.profile_id),
-        identificacion: form.identificacion,
-      },
-      isMultipart: false,
-    };
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSuccessMessage("");
-    setGeneralError("");
-
-    if (!validate()) return;
+  const loadUsers = useCallback(async () => {
+    setLoading(true);
+    setErrorMessage("");
 
     try {
-      const payload = buildPayload();
-
-      console.log("Payload listo para enviar:", payload);
-
-      // Aquí luego conectas tu servicio real.
-      // Ejemplo:
-      // if (payload.isMultipart) {
-      //   await createClientUser(payload.data);
-      // } else {
-      //   await createExternalUser(payload.data);
-      // }
-
-      setSuccessMessage("Formulario validado correctamente. Listo para enviar al backend.");
+      const data = await getExternalUsers();
+      setUsers(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error(error);
-      setGeneralError("Ocurrió un error al procesar la información.");
+      setErrorMessage("No se pudo cargar la lista de usuarios del API externo.");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadUsers();
+  }, [loadUsers]);
+
+  const filteredUsers = useMemo(() => {
+    const term = search.trim().toLowerCase();
+    if (!term) return users;
+
+    return users.filter((user) =>
+      [
+        user.id,
+        user.usuario,
+        user.email,
+        user.full_name,
+        user.identificacion,
+        user.profile,
+        user.profile_id,
+      ]
+        .filter((value) => value !== null && value !== undefined)
+        .some((value) => String(value).toLowerCase().includes(term))
+    );
+  }, [search, users]);
+
+  const openCreateDialog = () => {
+    setNewUser(createBaseUser());
+    setCreateBilling(createBillingData());
+    setCreateDialogOpen(true);
+  };
+
+  const closeCreateDialog = () => setCreateDialogOpen(false);
+
+  const openEditDialog = (user) => {
+    setEditingUser({
+      id: user.id,
+      usuario: user.usuario || "",
+      password: "",
+      email: user.email || "",
+      full_name: user.full_name || "",
+      identificacion: user.identificacion || "",
+      profile_id: Number(user.profile_id) || 1,
+      active: user.active ?? true,
+    });
+
+    setEditBilling({
+      ruc: user.ruc || "",
+      razon_social: user.razon_social || "",
+      nombre_comercial: user.nombre_comercial || "",
+      direccion: user.direccion || "",
+      telefono: user.telefono || "",
+      obligado_contabilidad: user.obligado_contabilidad || "SI",
+      nombre_firma: user.nombre_firma || "",
+      password_sign: "",
+      ruta_logo: user.ruta_logo || "",
+    });
+
+    setEditDialogOpen(true);
+  };
+
+  const closeEditDialog = () => {
+    setEditDialogOpen(false);
+    setEditingUser(null);
+  };
+
+  const handleCreateFieldChange = (name, value) => {
+    setNewUser((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleEditFieldChange = (name, value) => {
+    setEditingUser((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const isClientProfile = (profileId) => Number(profileId) === 4;
+
+  const validateBaseUser = (user) =>
+    user.usuario.trim() &&
+    user.password.trim() &&
+    user.email.trim() &&
+    user.full_name.trim() &&
+    user.identificacion.trim();
+
+  const validateBilling = (billing) =>
+    billing.ruc.trim() &&
+    billing.razon_social.trim() &&
+    billing.nombre_comercial.trim() &&
+    billing.direccion.trim() &&
+    billing.telefono.trim() &&
+    billing.password_sign.trim() &&
+    billing.ruta_logo.trim();
+
+  const handleCreateUser = async () => {
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    if (!validateBaseUser(newUser)) {
+      setErrorMessage("Completa todos los datos generales del usuario.");
+      return;
+    }
+
+    if (isClientProfile(newUser.profile_id) && !validateBilling(createBilling)) {
+      setErrorMessage("Para perfil Cliente completa también todos los datos de facturación.");
+      return;
+    }
+
+    try {
+      const created = await createExternalUser({
+        usuario: newUser.usuario,
+        password: newUser.password,
+        email: newUser.email,
+        full_name: newUser.full_name,
+        identificacion: newUser.identificacion,
+        profile_id: Number(newUser.profile_id),
+      });
+
+      const createdId = created?.id;
+
+      if (isClientProfile(newUser.profile_id) && createdId) {
+        await updateExternalUserBilling(createdId, createBilling);
+      }
+
+      setSuccessMessage("Usuario creado correctamente.");
+      closeCreateDialog();
+      await loadUsers();
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(error?.response?.data?.message || "No se pudo crear el usuario externo.");
     }
   };
+
+  const handleUpdateUser = async () => {
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    if (!editingUser) return;
+
+    if (!validateBaseUser(editingUser)) {
+      setErrorMessage("Completa todos los datos generales para actualizar el usuario.");
+      return;
+    }
+
+    if (isClientProfile(editingUser.profile_id) && !validateBilling(editBilling)) {
+      setErrorMessage("Para perfil Cliente completa también los datos de facturación.");
+      return;
+    }
+
+    try {
+      await updateExternalUser(editingUser.id, {
+        usuario: editingUser.usuario,
+        password: editingUser.password,
+        email: editingUser.email,
+        full_name: editingUser.full_name,
+        identificacion: editingUser.identificacion,
+        profile_id: Number(editingUser.profile_id),
+        active: !!editingUser.active,
+      });
+
+      if (isClientProfile(editingUser.profile_id)) {
+        await updateExternalUserBilling(editingUser.id, editBilling);
+      }
+
+      setSuccessMessage("Usuario actualizado correctamente.");
+      closeEditDialog();
+      await loadUsers();
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(error?.response?.data?.message || "No se pudo actualizar el usuario externo.");
+    }
+  };
+
+  const renderGeneralFields = (model, onChange) => (
+    <>
+      <TextField label="Usuario" value={model.usuario} onChange={(e) => onChange("usuario", e.target.value)} />
+      <TextField
+        label="Contraseña"
+        type="password"
+        value={model.password}
+        onChange={(e) => onChange("password", e.target.value)}
+      />
+      <TextField label="Correo" value={model.email} onChange={(e) => onChange("email", e.target.value)} />
+      <TextField
+        label="Nombre completo"
+        value={model.full_name}
+        onChange={(e) => onChange("full_name", e.target.value)}
+      />
+      <TextField
+        label="Identificación"
+        value={model.identificacion}
+        onChange={(e) => onChange("identificacion", e.target.value)}
+      />
+      <TextField
+        select
+        label="Perfil"
+        value={model.profile_id}
+        onChange={(e) => onChange("profile_id", Number(e.target.value))}
+      >
+        {profileOptions.map((profile) => (
+          <MenuItem key={profile.value} value={profile.value}>
+            {profile.label}
+          </MenuItem>
+        ))}
+      </TextField>
+    </>
+  );
+
+  const renderBillingFields = (billing, onChange) => (
+    <>
+      <Typography variant="subtitle2" fontWeight="bold">
+        Datos de facturación (Cliente)
+      </Typography>
+      <TextField label="RUC" value={billing.ruc} onChange={(e) => onChange("ruc", e.target.value)} />
+      <TextField
+        label="Razón social"
+        value={billing.razon_social}
+        onChange={(e) => onChange("razon_social", e.target.value)}
+      />
+      <TextField
+        label="Nombre comercial"
+        value={billing.nombre_comercial}
+        onChange={(e) => onChange("nombre_comercial", e.target.value)}
+      />
+      <TextField
+        label="Dirección"
+        value={billing.direccion}
+        onChange={(e) => onChange("direccion", e.target.value)}
+      />
+      <TextField
+        label="Teléfono"
+        value={billing.telefono}
+        onChange={(e) => onChange("telefono", e.target.value)}
+      />
+      <TextField
+        select
+        label="Obligado a contabilidad"
+        value={billing.obligado_contabilidad}
+        onChange={(e) => onChange("obligado_contabilidad", e.target.value)}
+      >
+        <MenuItem value="SI">SI</MenuItem>
+        <MenuItem value="NO">NO</MenuItem>
+      </TextField>
+      <TextField
+        label="Nombre firma"
+        value={billing.nombre_firma}
+        onChange={(e) => onChange("nombre_firma", e.target.value)}
+      />
+      <TextField
+        label="Password firma"
+        type="password"
+        value={billing.password_sign}
+        onChange={(e) => onChange("password_sign", e.target.value)}
+      />
+      <TextField
+        label="Ruta logo"
+        value={billing.ruta_logo}
+        onChange={(e) => onChange("ruta_logo", e.target.value)}
+      />
+    </>
+  );
 
   return (
     <Box>
       <Typography variant="h4" fontWeight="bold" gutterBottom>
-        Gestión de usuarios
+        Usuarios API Facturación
       </Typography>
-
-      <Typography variant="body1" sx={{ mb: 3 }}>
-        Registra usuarios para el consumo del API FE.
+      <Typography variant="body1" sx={{ mb: 2 }}>
+        Lista, crea y edita usuarios del API externo de facturación.
       </Typography>
 
       <Card elevation={2}>
         <CardContent>
-          <Box component="form" onSubmit={handleSubmit}>
-            <Stack spacing={3}>
-              {successMessage && <Alert severity="success">{successMessage}</Alert>}
-              {generalError && <Alert severity="error">{generalError}</Alert>}
+          <Stack spacing={2}>
+            {successMessage && <Alert severity="success">{successMessage}</Alert>}
+            {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
 
-              <Box>
-                <Typography variant="h6" fontWeight="bold" gutterBottom>
-                  Datos generales
-                </Typography>
-                <Divider />
-              </Box>
-
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    label="Usuario"
-                    name="usuario"
-                    value={form.usuario}
-                    onChange={handleChange}
-                    error={!!errors.usuario}
-                    helperText={errors.usuario}
-                  />
-                </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    label="Contraseña"
-                    name="password"
-                    type="password"
-                    value={form.password}
-                    onChange={handleChange}
-                    error={!!errors.password}
-                    helperText={errors.password}
-                  />
-                </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    label="Correo electrónico"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    error={!!errors.email}
-                    helperText={errors.email}
-                  />
-                </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    label="Nombre completo"
-                    name="full_name"
-                    value={form.full_name}
-                    onChange={handleChange}
-                    error={!!errors.full_name}
-                    helperText={errors.full_name}
-                  />
-                </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    select
-                    fullWidth
-                    label="Perfil"
-                    name="profile_id"
-                    value={form.profile_id}
-                    onChange={handleChange}
-                    error={!!errors.profile_id}
-                    helperText={errors.profile_id}
-                  >
-                    {profileOptions.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    label="Identificación"
-                    name="identificacion"
-                    value={form.identificacion}
-                    onChange={handleChange}
-                    error={!!errors.identificacion}
-                    helperText={errors.identificacion}
-                  />
-                </Grid>
-              </Grid>
-
-              {isClientProfile && (
-                <>
-                  <Box sx={{ pt: 1 }}>
-                    <Typography variant="h6" fontWeight="bold" gutterBottom>
-                      Datos adicionales del cliente
-                    </Typography>
-                    <Divider />
-                  </Box>
-
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
-                      <TextField
-                        fullWidth
-                        label="RUC"
-                        name="ruc"
-                        value={form.ruc}
-                        onChange={handleChange}
-                        error={!!errors.ruc}
-                        helperText={errors.ruc}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                      <TextField
-                        fullWidth
-                        label="Contraseña de firma"
-                        name="password_sign"
-                        type="password"
-                        value={form.password_sign}
-                        onChange={handleChange}
-                        error={!!errors.password_sign}
-                        helperText={errors.password_sign}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                      <TextField
-                        fullWidth
-                        label="Razón social"
-                        name="razon_social"
-                        value={form.razon_social}
-                        onChange={handleChange}
-                        error={!!errors.razon_social}
-                        helperText={errors.razon_social}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                      <TextField
-                        fullWidth
-                        label="Nombre comercial"
-                        name="nombre_comercial"
-                        value={form.nombre_comercial}
-                        onChange={handleChange}
-                        error={!!errors.nombre_comercial}
-                        helperText={errors.nombre_comercial}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={8}>
-                      <TextField
-                        fullWidth
-                        label="Dirección"
-                        name="direccion"
-                        value={form.direccion}
-                        onChange={handleChange}
-                        error={!!errors.direccion}
-                        helperText={errors.direccion}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={4}>
-                      <TextField
-                        fullWidth
-                        label="Teléfono"
-                        name="telefono"
-                        value={form.telefono}
-                        onChange={handleChange}
-                        error={!!errors.telefono}
-                        helperText={errors.telefono}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                      <Button
-                        fullWidth
-                        variant="outlined"
-                        component="label"
-                        sx={{ height: 56, justifyContent: "flex-start" }}
-                      >
-                        {form.firma ? `Firma: ${form.firma.name}` : "Seleccionar firma (.p12)"}
-                        <input
-                          hidden
-                          type="file"
-                          name="firma"
-                          accept=".p12,application/x-pkcs12"
-                          onChange={handleFileChange}
-                        />
-                      </Button>
-                      {errors.firma && (
-                        <Typography variant="caption" color="error" sx={{ ml: 1 }}>
-                          {errors.firma}
-                        </Typography>
-                      )}
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                      <Button
-                        fullWidth
-                        variant="outlined"
-                        component="label"
-                        sx={{ height: 56, justifyContent: "flex-start" }}
-                      >
-                        {form.ruta_logo ? `Logo: ${form.ruta_logo.name}` : "Seleccionar logo"}
-                        <input
-                          hidden
-                          type="file"
-                          name="ruta_logo"
-                          accept="image/*"
-                          onChange={handleFileChange}
-                        />
-                      </Button>
-                      {errors.ruta_logo && (
-                        <Typography variant="caption" color="error" sx={{ ml: 1 }}>
-                          {errors.ruta_logo}
-                        </Typography>
-                      )}
-                    </Grid>
-
-                    <Grid item xs={12}>
-                      <FormControl error={!!errors.obligado_contabilidad}>
-                        <FormLabel>Obligado a llevar contabilidad</FormLabel>
-                        <RadioGroup
-                          row
-                          name="obligado_contabilidad"
-                          value={form.obligado_contabilidad}
-                          onChange={handleChange}
-                        >
-                          <FormControlLabel value="SI" control={<Radio />} label="Sí" />
-                          <FormControlLabel value="NO" control={<Radio />} label="No" />
-                        </RadioGroup>
-                        {errors.obligado_contabilidad && (
-                          <Typography variant="caption" color="error">
-                            {errors.obligado_contabilidad}
-                          </Typography>
-                        )}
-                      </FormControl>
-                    </Grid>
-                  </Grid>
-                </>
-              )}
-
-              <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    setForm({
-                      password: "",
-                      usuario: "",
-                      email: "",
-                      full_name: "",
-                      profile_id: profileOptions[0].value,
-                      identificacion: "",
-                      ruc: "",
-                      password_sign: "",
-                      razon_social: "",
-                      firma: null,
-                      nombre_comercial: "",
-                      direccion: "",
-                      telefono: "",
-                      ruta_logo: null,
-                      obligado_contabilidad: "SI",
-                    });
-                    setErrors({});
-                    setSuccessMessage("");
-                    setGeneralError("");
-                  }}
-                >
-                  Limpiar
-                </Button>
-
-                <Button type="submit" variant="contained">
-                  Guardar usuario
-                </Button>
-              </Box>
+            <Stack direction={{ xs: "column", md: "row" }} spacing={2} justifyContent="space-between">
+              <TextField
+                fullWidth
+                label="Buscar en cualquier columna"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <Button variant="contained" startIcon={<Add />} onClick={openCreateDialog}>
+                Añadir usuario
+              </Button>
             </Stack>
-          </Box>
+
+            <TableContainer>
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>ID</TableCell>
+                    <TableCell>Usuario</TableCell>
+                    <TableCell>Correo</TableCell>
+                    <TableCell>Nombre completo</TableCell>
+                    <TableCell>Identificación</TableCell>
+                    <TableCell>Perfil</TableCell>
+                    <TableCell>Activo</TableCell>
+                    <TableCell align="right">Acciones</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {filteredUsers.map((user) => (
+                    <TableRow key={user.id} hover>
+                      <TableCell>{user.id}</TableCell>
+                      <TableCell>{user.usuario}</TableCell>
+                      <TableCell>{user.email}</TableCell>
+                      <TableCell>{user.full_name}</TableCell>
+                      <TableCell>{user.identificacion}</TableCell>
+                      <TableCell>{user.profile || user.profile_id}</TableCell>
+                      <TableCell>{user.active ? "Sí" : "No"}</TableCell>
+                      <TableCell align="right">
+                        <Tooltip title="Editar usuario">
+                          <IconButton color="primary" onClick={() => openEditDialog(user)}>
+                            <Edit fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {filteredUsers.length === 0 && (
+                    <TableRow>
+                      <TableCell colSpan={8} align="center">
+                        {loading ? "Cargando usuarios..." : "No se encontraron usuarios."}
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Stack>
         </CardContent>
       </Card>
+
+      <Dialog open={createDialogOpen} onClose={closeCreateDialog} fullWidth maxWidth="sm">
+        <DialogTitle>Añadir usuario API facturación</DialogTitle>
+        <DialogContent>
+          <Stack spacing={2} sx={{ mt: 1 }}>
+            {renderGeneralFields(newUser, handleCreateFieldChange)}
+            {isClientProfile(newUser.profile_id) &&
+              renderBillingFields(createBilling, (name, value) =>
+                setCreateBilling((prev) => ({ ...prev, [name]: value }))
+              )}
+          </Stack>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeCreateDialog}>Cancelar</Button>
+          <Button variant="contained" onClick={handleCreateUser}>
+            Crear usuario
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={editDialogOpen} onClose={closeEditDialog} fullWidth maxWidth="sm">
+        <DialogTitle>Editar usuario API facturación</DialogTitle>
+        <DialogContent>
+          {editingUser && (
+            <Stack spacing={2} sx={{ mt: 1 }}>
+              {renderGeneralFields(editingUser, handleEditFieldChange)}
+              <Box>
+                <Checkbox
+                  checked={editingUser.active}
+                  onChange={(e) => handleEditFieldChange("active", e.target.checked)}
+                />
+                Usuario activo
+              </Box>
+              {isClientProfile(editingUser.profile_id) &&
+                renderBillingFields(editBilling, (name, value) =>
+                  setEditBilling((prev) => ({ ...prev, [name]: value }))
+                )}
+            </Stack>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeEditDialog}>Cancelar</Button>
+          <Button variant="contained" onClick={handleUpdateUser}>
+            Guardar cambios
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

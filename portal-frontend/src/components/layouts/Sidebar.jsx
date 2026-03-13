@@ -8,6 +8,7 @@ export default function Sidebar() {
   const location = useLocation();
   const { user } = useAuth();
   const isAdmin = user?.role === "Admin";
+  const canManageExternalUsers = ["Admin", "Desarrollador"].includes(user?.role);
   const [openApiFe, setOpenApiFe] = useState(true);
   const [openGestion, setOpenGestion] = useState(true);
 
@@ -26,8 +27,11 @@ export default function Sidebar() {
 
   const subItemsGestion = [];
 
-  if (isAdmin) {
+  if (canManageExternalUsers) {
     subItemsApiFe.unshift({ text: "Usuarios", path: "/users" });
+    }
+
+  if (isAdmin) {
     subItemsGestion.push({ text: "Usuarios", path: "/usersgestion" });
   }
 
