@@ -58,6 +58,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PortalUsuarios.Api.Controllers.ExternalRequestLogsController",
+    "Method": "GetRequestLogs",
+    "RelativePath": "api/external-request-logs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PortalUsuarios.Api.Controllers.ExternalUsersController",
     "Method": "GetUsers",
     "RelativePath": "api/external-users",

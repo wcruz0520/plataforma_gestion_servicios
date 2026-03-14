@@ -51,6 +51,14 @@ public class ExternalApiUserService
         return await client.PutAsJsonAsync(url, dto);
     }
 
+    public async Task<HttpResponseMessage> GetRequestLogsAsync(PortalUser? portalUser)
+    {
+        var client = await CreateAuthenticatedClientAsync(portalUser);
+        var url = BuildUrl("/user/request_logs");
+
+        return await client.GetAsync(url);
+    }
+
     private async Task<HttpClient> CreateAuthenticatedClientAsync(PortalUser? portalUser)
     {
         var token = await _authService.GetTokenAsync(portalUser);

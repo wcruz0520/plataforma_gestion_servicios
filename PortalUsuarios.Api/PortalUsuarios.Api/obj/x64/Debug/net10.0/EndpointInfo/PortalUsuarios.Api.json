@@ -109,6 +109,18 @@
         }
       }
     },
+    "/api/external-request-logs": {
+      "get": {
+        "tags": [
+          "ExternalRequestLogs"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/external-users": {
       "get": {
         "tags": [
@@ -612,6 +624,9 @@
   "tags": [
     {
       "name": "Auth"
+    },
+    {
+      "name": "ExternalRequestLogs"
     },
     {
       "name": "ExternalUsers"

@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\services\\externalapiauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\services\\externalapiauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\services\\externalapiuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\services\\externalapiuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\controllers\\externalrequestlogscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\controllers\\externalrequestlogscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\controllers\\portaluserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\controllers\\portaluserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\services\\externalapiauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\services\\externalapiauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\controllers\\externaluserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,18 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\services\\portalauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\services\\portalauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\controllers\\portaluserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\controllers\\portaluserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|solutionrelative:portalusuarios.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AFF3BAB7-3BFF-3DD1-45B1-2B554AD76B97}|PortalUsuarios.Api\\PortalUsuarios.Api.csproj|c:\\users\\williamc\\source\\repos\\portalservicios\\portalusuarios.api\\portalusuarios.api\\dtos\\bulkdeleteportalusersdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -110,11 +114,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 24,
+          "SelectedChildIndex": 19,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "ExternalRequestLogsController.cs",
+              "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Controllers\\ExternalRequestLogsController.cs",
+              "RelativeDocumentMoniker": "PortalUsuarios.Api\\Controllers\\ExternalRequestLogsController.cs",
+              "ToolTip": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Controllers\\ExternalRequestLogsController.cs",
+              "RelativeToolTip": "PortalUsuarios.Api\\Controllers\\ExternalRequestLogsController.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAuwDYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-13T15:05:53.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "UpdateExternalUserDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\UpdateExternalUserDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\UpdateExternalUserDto.cs",
@@ -126,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "UpdateExternalUserBillingDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\UpdateExternalUserBillingDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\UpdateExternalUserBillingDto.cs",
@@ -138,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "BulkDeletePortalUsersDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\BulkDeletePortalUsersDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\BulkDeletePortalUsersDto.cs",
@@ -150,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ChangePasswordDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\ChangePasswordDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\ChangePasswordDto.cs",
@@ -162,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "UpdateCurrentUserProfileDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\UpdateCurrentUserProfileDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\UpdateCurrentUserProfileDto.cs",
@@ -174,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "CurrentUserProfileDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\CurrentUserProfileDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\CurrentUserProfileDto.cs",
@@ -186,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "20260312174231_UpdateTablePortalUsers.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Migrations\\20260312174231_UpdateTablePortalUsers.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Migrations\\20260312174231_UpdateTablePortalUsers.cs",
@@ -198,7 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "UpsertPortalUserDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\UpsertPortalUserDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\UpsertPortalUserDto.cs",
@@ -210,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "PortalUserResponseDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\PortalUserResponseDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\PortalUserResponseDto.cs",
@@ -222,19 +239,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "PortalUsersController.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Controllers\\PortalUsersController.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Controllers\\PortalUsersController.cs",
               "ToolTip": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Controllers\\PortalUsersController.cs",
               "RelativeToolTip": "PortalUsuarios.Api\\Controllers\\PortalUsersController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAwwBkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T17:35:33.109Z"
+              "WhenOpened": "2026-03-12T17:35:33.109Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "20260312050735_InitialCreate.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Migrations\\20260312050735_InitialCreate.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Migrations\\20260312050735_InitialCreate.cs",
@@ -246,7 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "PortalAuthService.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Services\\PortalAuthService.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Services\\PortalAuthService.cs",
@@ -258,7 +276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Data\\AppDbContext.cs",
@@ -270,7 +288,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "PortalUser.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Models\\PortalUser.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Models\\PortalUser.cs",
@@ -282,7 +300,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Controllers\\AuthController.cs",
@@ -294,7 +312,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "LoginResponseDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\LoginResponseDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\LoginResponseDto.cs",
@@ -306,7 +324,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "LoginRequestDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\LoginRequestDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\LoginRequestDto.cs",
@@ -318,7 +336,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "TokenService.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Services\\TokenService.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Services\\TokenService.cs",
@@ -330,7 +348,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Properties\\launchSettings.json",
@@ -338,23 +356,25 @@
               "RelativeToolTip": "PortalUsuarios.Api\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-12T03:40:53.872Z"
+              "WhenOpened": "2026-03-12T03:40:53.872Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Program.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Program.cs",
               "ToolTip": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Program.cs",
               "RelativeToolTip": "PortalUsuarios.Api\\Program.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAAAE4AAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T03:34:09.622Z"
+              "WhenOpened": "2026-03-12T03:34:09.622Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "ExternalUsersController.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Controllers\\ExternalUsersController.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Controllers\\ExternalUsersController.cs",
@@ -362,12 +382,11 @@
               "RelativeToolTip": "PortalUsuarios.Api\\Controllers\\ExternalUsersController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-12T03:31:28.852Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-12T03:31:28.852Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "CreateExternalUserDto.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\DTOs\\CreateExternalUserDto.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\DTOs\\CreateExternalUserDto.cs",
@@ -379,20 +398,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ExternalApiUserService.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Services\\ExternalApiUserService.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Services\\ExternalApiUserService.cs",
               "ToolTip": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Services\\ExternalApiUserService.cs",
               "RelativeToolTip": "PortalUsuarios.Api\\Services\\ExternalApiUserService.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAwwB4AAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAA1wDAAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-12T03:30:22.323Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\appsettings.json",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\appsettings.json",
@@ -404,13 +423,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "ExternalApiAuthService.cs",
               "DocumentMoniker": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Services\\ExternalApiAuthService.cs",
               "RelativeDocumentMoniker": "PortalUsuarios.Api\\Services\\ExternalApiAuthService.cs",
               "ToolTip": "C:\\Users\\WILLIAMC\\source\\repos\\PortalServicios\\PortalUsuarios.Api\\PortalUsuarios.Api\\Services\\ExternalApiAuthService.cs",
               "RelativeToolTip": "PortalUsuarios.Api\\Services\\ExternalApiAuthService.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAwwDMAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAwwDMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-12T03:26:20.224Z",
               "EditorCaption": ""
